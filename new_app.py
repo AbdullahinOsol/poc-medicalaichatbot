@@ -12,7 +12,7 @@ import os
 
 load_dotenv()
 
-model = OllamaLLM(model="llama3.2", streaming=True)
+model = OllamaLLM(model="llama3.2:3b", streaming=True)
 
 
 new_template = """
