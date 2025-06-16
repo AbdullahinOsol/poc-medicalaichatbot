@@ -78,18 +78,15 @@ Users can interact with the chatbot by asking questions directly or uploading .p
    NAMESPACE = ""
    ```
 
-### Step 4: Create a User Profile for Chatbot Login
+### Step 4: Create a User Profile for Chatbot Login via CLI
 
-1. Open the `add_user.py` file in your code editor.
-2. Locate line 19 and edit it with your desired credentials:
-   ```python
-   # Replace with test credentials 
-   add_user("new_user", "new_password")
-   ```
-3. Save the file and run it to create the user:
+You can now add a new user using command-line arguments.
+
+1. Run the following command:
    ```bash
-   python add_user.py
+   python add_user.py --username=myuser --password=mypassword
    ```
+   Replace `myuser` and `mypassword` with your desired credentials.
 
 ### Step 5: Launch the Streamlit App
 

@@ -2,9 +2,13 @@
 import bcrypt
 from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String, select
 from sqlalchemy.orm import sessionmaker
+import os
+
+# Ensure the 'database' directory exists
+os.makedirs("database", exist_ok=True)
 
 # Database connection string
-DATABASE_URL = "sqlite:///mydatabase.db"
+DATABASE_URL = "sqlite:///database/mydatabase.db"
 
 # Setup
 engine = create_engine(DATABASE_URL)

@@ -1,4 +1,4 @@
-# add_user.py
+import argparse
 import bcrypt
 from auth import Session, users
 
@@ -15,5 +15,10 @@ def add_user(username, raw_password):
     finally:
         session.close()
 
-# Replace with test credentials
-add_user("new_user", "new_password")
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Add a new user to the chatbot system.")
+    parser.add_argument("--username", required=True, help="Username for the new user")
+    parser.add_argument("--password", required=True, help="Password for the new user")
+
+    args = parser.parse_args()
+    add_user(args.username, args.password)
