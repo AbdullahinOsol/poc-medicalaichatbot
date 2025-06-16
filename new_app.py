@@ -9,10 +9,54 @@ from langchain_ollama.llms import OllamaLLM
 from langchain_core.prompts import ChatPromptTemplate
 from dotenv import load_dotenv
 import os
+from auth import verify_credentials
+from datetime import datetime, timedelta
+
+SESSION_TIMEOUT_MINUTES = 10
+
+def logout():
+    st.session_state.clear()
+    st.rerun()
+
+def auto_logout():
+    if "is_logged_in" in st.session_state and st.session_state["is_logged_in"]:
+        now = datetime.now()
+        login_time = st.session_state.get("login_time", now)
+        if now - login_time > timedelta(minutes=SESSION_TIMEOUT_MINUTES):
+            st.warning("Your session has expired. Please log in again.")
+            logout()
+
+auto_logout()
+
+if "authenticated" not in st.session_state:
+    st.session_state.authenticated = False
+if "username" not in st.session_state:
+    st.session_state.username = ""
+
+# --- Login UI ---
+if not st.session_state.authenticated:
+    with st.form("login_form"):
+        st.subheader("🔐 Login")
+        username = st.text_input("Username")
+        password = st.text_input("Password", type="password")
+        submitted = st.form_submit_button("Login")
+
+        if submitted:
+            if verify_credentials(username, password):
+                st.session_state["is_logged_in"] = True
+                st.session_state.authenticated = True
+                st.session_state.username = username
+                st.session_state["login_time"] = datetime.now()
+                st.success(f"✅ Welcome {username}!")
+                st.rerun()
+            else:
+                st.error("❌ Invalid credentials")
+
+    st.stop()
 
 load_dotenv()
 
-model = OllamaLLM(model="llama3.2:3b", streaming=True)
+model = OllamaLLM(model="llama3.2", streaming=True)
 
 
 new_template = """

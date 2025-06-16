@@ -1,3 +1,4 @@
+
 # POC-Medical AI Chatbot
 
 This Proof of Concept (PoC) demonstrates the implementation of a Medical AI Chatbot that leverages Retrieval-Augmented Generation (RAG) and LLaMA 3.2-3B to provide accurate, context-aware responses to health-related queries.
@@ -26,7 +27,7 @@ Users can interact with the chatbot by asking questions directly or uploading .p
 
 ### Step 1: Install Ollama and Pull the LLaMA 3.2-3B Model
 
-1. Download Ollama from https://ollama.com/download
+1. Download Ollama from https://ollama.com/download  
 2. Open your terminal and type:
    ```bash
    ollama
@@ -52,11 +53,11 @@ Users can interact with the chatbot by asking questions directly or uploading .p
    uv venv --python 3.9
    ```
 4. Activate the virtual environment:
-   - Windows:
+   - **Windows**:
      ```bash
      .venv\Scripts\activate
      ```
-   - macOS/Linux:
+   - **macOS/Linux**:
      ```bash
      source .venv/bin/activate
      ```
@@ -77,9 +78,20 @@ Users can interact with the chatbot by asking questions directly or uploading .p
    NAMESPACE = ""
    ```
 
+### Step 4: Create a User Profile for Chatbot Login
 
+1. Open the `add_user.py` file in your code editor.
+2. Locate line 19 and edit it with your desired credentials:
+   ```python
+   # Replace with test credentials 
+   add_user("new_user", "new_password")
+   ```
+3. Save the file and run it to create the user:
+   ```bash
+   python add_user.py
+   ```
 
-### Step 4: Launch the Streamlit App
+### Step 5: Launch the Streamlit App
 
 ```bash
 streamlit run new_app.py
@@ -87,4 +99,4 @@ streamlit run new_app.py
 
 ## Author
 
-Abdullah Arshad @AbdullahinOsol
+**Abdullah Arshad** @AbdullahinOsol
